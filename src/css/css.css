@@ -1,37 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
 :root {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+    --clr-black: #222;
+    --transition: all 0.3s linear;
+    --spacing: 0.075rem;
+    --radius: 0.25rem;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    --max-width: 1170px;
+    --fixed-width: 450px;
+    box-sizing: border-box;
 }
 body,
+html,
 #root,
 .App {
-  margin: 0;
-  padding: 0;
-  /* height: 100vh; */
+    margin: 0;
+    padding: 0;
+    background-color: var(--bs-gray-900);
+    min-height: 100%;
+}
+.d-f {
+    justify-content: center;
+    align-items: center;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
+    color: inherit;
 }
-.veiw {
-  height: calc(100vh - 60px);
+.Post a {
+    text-decoration: underline;
 }
-.hero-main {
-  width: 350px;
-  background: url(../Me.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+#NavBar {
+    min-height: 69px;
+    top: 0;
+}
+#Contact,
+#Posts,
+.Hero,
+#Projects {
+    min-height: calc(100vh - 69px);
+}
+#Projects {
+    background-color: var(--bs-danger);
+    overflow: hidden;
+}
+.Project {
+    z-index: 1;
+    color: var(--bs-gray-900);
+}
+.Project-Image {
+    transform: translate(-10%);
+    z-index: -1;
+    position: relative;
+}
+.Project:nth-of-type(2n) .Project-Image {
+    transform: translate(10%);
+}
+.Project-Image .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--bs-danger-rgb), 0.6);
+    transition: 0.3s;
+}
+.Project-Image .overlay:hover {
+    opacity: 0;
+}
+.Project-Data {
+    z-index: 3;
+    background-color: rgba(var(--bs-warning-rgb), 0.4);
+}
+@media (max-width: 768px) {
+    .Project-Image {
+        transform: translate(-10%, -50%);
+    }
+    .Project:nth-of-type(2n) .Project-Image {
+        transform: translate(10%, -50%);
+    }
+    .Project-Image .overlay:hover {
+        opacity: 1;
+    }
+}
+@media (max-width: 576px) {
+    .Project {
+        z-index: 1;
+        flex-direction: row-reverse;
+    }
+    .Project-Image {
+        transform: translate(0%, 0%);
+    }
+    .Project:nth-of-type(2n) .Project-Image {
+        transform: translate(0%);
+    }
+}
+.Hero {
+    background: url(../Image/BGG.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Hero-Text h1 {
+    font-family: 'Courgette', cursive;
+}
+#Contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bs-warning);
+}
+.RegisterForm,
+.LoginForm,
+.Hero-Text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .RegisterForm,
 .LoginForm {
-  position: relative;
+    position: fixed;
+    background-color: var(--bs-gray-800);
+    z-index: 101;
+}
+.RegisterForm::before,
+.LoginForm::before {
+    content: '';
+    background-color: var(--bs-gray-900);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10000px;
+    height: 10000px;
+    opacity: 0.5;
+    z-index: -1;
 }
 .Modal {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+}
+.Post {
+    background-color: rgba(var(--bs-danger-rgb), 0.9);
+}
+.Post-Head-Sub {
+    justify-content: space-between;
+}
+.Post-Head p span {
+    background-color: rgba(var(--bs-dark-rgb), 0.6);
+    width: fit-content;
+}
+.Post-Body p {
+    color: rgba(var(--bs-dark-rgb), 0.8);
+}
+.Post-Body p a {
+    color: rgba(var(--bs-info-rgb), 0.8) !important;
+}
+#Contact-Form {
+    position: relative;
+    max-width: 768px;
+}
+#Contact-Form {
+    background-color: var(--bs-gray-700);
+}
+.contact-name {
+    width: 50%;
+}
+@media (max-width: 768px) {
+    .contact-name {
+        width: 100%;
+    }
 }

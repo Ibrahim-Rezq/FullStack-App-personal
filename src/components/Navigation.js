@@ -1,46 +1,79 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Navbar, NavLink, Nav, Container } from 'react-bootstrap'
 
 const Navigation = () => {
-  return (
-    <Navbar bg='dark' variant='dark' sticky='top' expand='md'>
-      <Container>
-        <Link className='navbar-brand' to='/'>
-          IbrahimRezq
-        </Link>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto'>
-            <Link role='button' className='nav-link' tabIndex='0' to='/'>
-              Home
-            </Link>
-            <Link role='button' className='nav-link' tabIndex='0' to='/contact'>
-              Contact
-            </Link>
-            <NavDropdown title='Who Am I?' id='basic-nav-dropdown'>
-              <Link
-                data-rr-ui-dropdown-item=''
-                className='dropdown-item'
-                role='button'
-                tabIndex='0'
-                to='/about'>
-                About
-              </Link>
-              <Link
-                data-rr-ui-dropdown-item=''
-                className='dropdown-item'
-                role='button'
-                tabIndex='0'
-                to='/projects'>
-                Projects
-              </Link>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
-};
+    const Scroll = (e) => {
+        e.preventDefault()
 
-export default Navigation;
+        const navBar = document.querySelector('#NavBar')
+        const navBarHeight = 69
+        const target = e.target.getAttribute('href')
+        const elem = document.querySelector(target)
+        const top = elem.getBoundingClientRect().top + window.scrollY
+        console.log(top)
+        window.scroll({
+            top: top - navBarHeight,
+            behavior: 'smooth',
+        })
+        console.log('navBarHeight')
+    }
+    const ScrollToTop = () => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }
+    return (
+        <Navbar id='NavBar' bg='dark' variant='dark' sticky='top' expand='md'>
+            <Container>
+                <Link className='navbar-brand font-monospace fs-3' to='/'>
+                    I_R
+                </Link>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='ms-auto'>
+                        <Link
+                            role='button'
+                            className='nav-link'
+                            tabIndex='0'
+                            to='/'
+                            onClick={ScrollToTop}
+                        >
+                            Home
+                        </Link>
+                        <NavLink
+                            role='button'
+                            className='nav-link'
+                            tabIndex='0'
+                            href='#Projects'
+                            onClick={Scroll}
+                        >
+                            Projects
+                        </NavLink>
+                        <NavLink
+                            role='button'
+                            className='nav-link'
+                            tabIndex='0'
+                            href='#Posts'
+                            onClick={Scroll}
+                        >
+                            Posts
+                        </NavLink>
+                        <NavLink
+                            role='button'
+                            className='nav-link'
+                            tabIndex='0'
+                            href='#Contact'
+                            onClick={Scroll}
+                        >
+                            Contact
+                        </NavLink>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    )
+}
+
+export default Navigation

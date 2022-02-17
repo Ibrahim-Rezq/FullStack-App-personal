@@ -1,16 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import React from 'react'
+import Hero from './Hero'
+import Contact from './Contact'
+import Projects from './Projects'
+// import LoginForm from './LoginForm'
+// import RegisterForm from './RegisterForm'
+import Posts from './Posts'
 const Home = () => {
-  return (
-    <>
-      <div className='Home p-5'>
-        <LoginForm></LoginForm>
-        <RegisterForm></RegisterForm>
-      </div>
-    </>
-  );
-};
+    return (
+        <>
+            {/* <LoginForm></LoginForm> */}
+            {/* <RegisterForm></RegisterForm> */}
+            <Hero />
+            <Projects />
+            <Posts />
+            <Contact />
+        </>
+    )
+}
 
-export default Home;
+export default Home

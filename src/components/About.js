@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const About = () => {
-  return (
-    <section className='about veiw'>
-      <Container></Container>
-    </section>
-  );
-};
+    return (
+        <section className='about veiw'>
+            <Container></Container>
+        </section>
+    )
+}
 
-export default About;
+export default About
