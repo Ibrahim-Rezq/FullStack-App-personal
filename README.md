@@ -21,7 +21,7 @@ Using React To build a responsive Portfolio Site using React hooks
 
 ### Screenshot
 
-![./images/screenshot.png]
+![./src/image/Website.png]
 
 ### Links
 
