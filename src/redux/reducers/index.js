@@ -1,7 +1,23 @@
+import { combineReducers } from 'redux'
+import blogReducer from './blogReducer'
+import modalReducer from './modalReducer'
+import signReducer from './signReducer'
+import {
+    ADD_ITEM,
+    CLOSE_MODAL,
+    REMOVE_ITEM,
+    NO_VALUE,
+    ADD_POST,
+    LIKE_POST,
+    DELET_POST,
+} from '../actions/const'
+
+export const rootReducer = combineReducers({
+    blog: blogReducer,
+    modal: modalReducer,
+    sign: signReducer,
+})
 export const reducer = (state, action) => {
-    const ADD_ITEM = 'ADD_ITEM'
-    const CLOSE_MODAL = 'CLOSE_MODAL'
-    const REMOVE_ITEM = 'REMOVE_ITEM'
     if (action.type === ADD_ITEM) {
         const newPeople = [...state.people, action.payload]
         return {
@@ -31,9 +47,6 @@ export const reducer = (state, action) => {
             isModalOpen: true,
             modalContent: `${action.payload}`,
         }
-    }
-    if (action.type === CLOSE_MODAL) {
-        return { ...state, isModalOpen: false }
     }
     if (action.type === REMOVE_ITEM) {
         const newPeople = state.people.filter(

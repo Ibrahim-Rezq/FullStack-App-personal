@@ -2,6 +2,10 @@
 
 :root {
     --clr-black: #222;
+    --clr-bg-main: #051525;
+    --clr-bg-sub: #041c33;
+    --clr-main: #008080;
+    --clr-sub: #52b5b5;
     --transition: all 0.3s linear;
     --spacing: 0.075rem;
     --radius: 0.25rem;
@@ -17,7 +21,6 @@ html,
 .App {
     margin: 0;
     padding: 0;
-    background-color: var(--bs-gray-900);
     min-height: 100%;
 }
 .d-f {
@@ -27,6 +30,9 @@ html,
 a {
     text-decoration: none;
     color: inherit;
+}
+p {
+    margin: 0;
 }
 .Post a {
     text-decoration: underline;
@@ -41,13 +47,14 @@ a {
 #Projects {
     min-height: calc(100vh - 69px);
 }
+#sign {
+    min-height: calc(100vh - 131px);
+}
 #Projects {
-    background-color: var(--bs-danger);
     overflow: hidden;
 }
 .Project {
     z-index: 1;
-    color: var(--bs-gray-900);
 }
 .Project-Image {
     transform: translate(-10%);
@@ -69,7 +76,6 @@ a {
 }
 .Project-Data {
     z-index: 3;
-    background-color: rgba(var(--bs-warning-rgb), 0.4);
 }
 @media (max-width: 768px) {
     .Project-Image {
@@ -95,7 +101,7 @@ a {
     }
 }
 .Hero {
-    background: url(../Image/BGG.png);
+    background: url(../image/BGG.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -107,42 +113,19 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bs-warning);
 }
-.RegisterForm,
-.LoginForm,
 .Hero-Text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.RegisterForm,
-.LoginForm {
-    position: fixed;
-    background-color: var(--bs-gray-800);
-    z-index: 101;
-}
-.RegisterForm::before,
-.LoginForm::before {
-    content: '';
-    background-color: var(--bs-gray-900);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10000px;
-    height: 10000px;
-    opacity: 0.5;
-    z-index: -1;
-}
 .Modal {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 5px;
+    background-color: var(--clr-sub);
 }
 .Post {
     background-color: rgba(var(--bs-danger-rgb), 0.9);
@@ -174,4 +157,22 @@ a {
     .contact-name {
         width: 100%;
     }
+}
+.bg-main {
+    background-color: var(--clr-bg-main);
+}
+.bg-sub {
+    background-color: var(--clr-bg-sub);
+}
+.clr-main {
+    background-color: var(--clr-main);
+}
+.clr-sub {
+    background-color: var(--clr-sub);
+}
+button {
+    transition: 0.3s all;
+}
+button:hover {
+    box-shadow: 0px 0px 50px inset #000;
 }

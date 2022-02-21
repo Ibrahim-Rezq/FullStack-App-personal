@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 import useOnScreen from '../../util/useOnScreen'
-import { BsEyeFill, BsHandThumbsUpFill } from 'react-icons/bs'
 
 function Post({ postData }) {
     const { title, summary, auther, updated, tags } = postData
@@ -11,9 +10,13 @@ function Post({ postData }) {
     return (
         <>
             <motion.div
+                layout
                 ref={ref}
-                initial={{ rotateX: 360 }}
-                animate={{ rotateX: isVisible ? 0 : 90 }}
+                initial={{ opacity: 0 }}
+                animate={{
+                    opacity: isVisible ? 1 : 0,
+                }}
+                exit={{ opacity: 0 }}
                 transition={{
                     delay: 0.2,
                     duration: 0.7,

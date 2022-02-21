@@ -3,6 +3,8 @@ import Hero from './Hero'
 import Contact from '../Contact/'
 import Projects from '../Projects'
 import Posts from '../Blog/Posts'
+import postData from '../../util/data'
+
 const Home = () => {
     return (
         <>
@@ -10,7 +12,7 @@ const Home = () => {
             {/* <RegisterForm></RegisterForm> */}
             <Hero />
             <Projects />
-            <Posts />
+            <Posts postData={postData} />
             <Contact />
         </>
     )

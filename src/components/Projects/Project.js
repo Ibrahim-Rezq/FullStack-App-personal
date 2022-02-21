@@ -36,7 +36,7 @@ function Project({ num, ProjectData }) {
                         type: 'spring',
                         stiffness: 100,
                     }}
-                    className='Project-Data px-3 py-1 rounded'
+                    className='Project-Data px-3 py-1 rounded clr-main'
                 >
                     <p className='lead mb-0 fw-normal text-light'>Featured</p>
                     <h4 className='display-5 ms-2 text-capitalize fw-bold'>
@@ -46,7 +46,7 @@ function Project({ num, ProjectData }) {
                     <ul>
                         {tech.map((elem, i) => {
                             return (
-                                <li key={i} className=' badge bg-info ms-3'>
+                                <li key={i} className=' badge clr-sub ms-3'>
                                     {elem}
                                 </li>
                             )

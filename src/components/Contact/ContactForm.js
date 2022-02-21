@@ -1,33 +1,13 @@
 import React, { useState, useReducer } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
-import { reducer } from '../../util/reducer'
 import Modal from '../../util/Modal'
 import validator from 'email-validator'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeModal, noValue } from '../../redux/actions/actionCreator'
 
-const defaultState = {
-    people: [],
-    isModalOpen: false,
-    modalContent: '',
-}
-
-// const url = '/post'
 const ContactForm = () => {
-    // const sendData = async (url = '', data = { err: 'erroe' }) => {
-    //     await fetch(url, {
-    //         method: 'POST',
-    //         credentials: 'same-origin',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //     })
-    // }
-    const [state, dispatch] = useReducer(reducer, defaultState)
-
-    const closeModal = () => {
-        dispatch({ type: 'CLOSE_MODAL' })
-    }
-
+    const modal = useSelector((state) => state.modal)
+    const dispatch = useDispatch()
     const [person, setPerson] = useState({
         firstName: '',
         lastName: '',
@@ -57,22 +37,24 @@ const ContactForm = () => {
                     email: '',
                     message: '',
                 })
-                dispatch({ type: 'ADD_ITEM', payload: newPerson })
+                dispatch({ type: 'ADD_ITEM' })
             } else {
                 dispatch({ type: 'NON_VAILED' })
             }
         } else {
-            dispatch({ type: 'NO_VALUE' })
+            dispatch(noValue())
         }
     }
 
     return (
         <>
             <Container id='Contact-Form'>
-                {state.isModalOpen && (
+                {modal.isModalOpen && (
                     <Modal
-                        closeModal={closeModal}
-                        modalContent={state.modalContent}
+                        modalContent={modal.modalContent}
+                        closeModal={() => {
+                            dispatch(closeModal())
+                        }}
                     />
                 )}
                 <Form className=' p-4 w-100 rounded w-75'>

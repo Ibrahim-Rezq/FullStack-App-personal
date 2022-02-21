@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 
 const Contact = () => {
     return (
-        <section id='Contact' className='p-md-5'>
+        <section id='Contact' className='p-md-5 bg-sub'>
             <Container className='text-primary mx-auto py-3 d-md-flex flex-column d-f'>
                 <h3 className='display-1'>Contact Me</h3>
                 <p className='lead'>Would Be Glade To Hear From You</p>

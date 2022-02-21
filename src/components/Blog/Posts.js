@@ -1,59 +1,62 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form } from 'react-bootstrap'
 import Post from './Post'
+import { FcSearch } from 'react-icons/fc'
+import { motion, AnimatePresence } from 'framer-motion'
 
-let postData = [
-    {
-        id: 1,
-        title: 'A CatchyTitle',
-        summary: `m a Passses the sorcery of code to create Amazing
-                        Websites, Always eager to learn new skills and master
-                        already acquired ones, love To write stories, make/play
-                        games in my spare time`,
-        puplished: '20-1-2020',
-        updated: '20-1-2020',
-        auther: 'Ibrahim',
-        tags: ['tech', 'tip', 'code'],
-    },
-    {
-        id: 2,
-        title: 'A CatchyTitle CocaDoodlyDo',
-        summary: `m a Passses the sorcery of code to create Amazing
-                        Websites, Always eager to learn new skills and master
-                        already acquired ones, love To write stories, make/play
-                        games in my spare time`,
-        vewis: 560,
-        likes: 777,
-        puplished: '20-1-2020',
-        updated: '25-8-2022',
-        auther: 'Ahmed',
-        tags: ['stories', 'funnny', 'clacky'],
-    },
-    {
-        id: 3,
-        title: 'A CatchyTitle',
-        summary: `m a Passses the sorcery of code to create Amazing
-                        Websites, Always eager to learn new skills and master
-                        already acquired ones, love To write stories, make/play
-                        games in my spare time`,
-        vewis: 100,
-        likes: 100,
-        puplished: '20-1-2020',
-        updated: '20-1-2020',
-        auther: 'Ibrahim',
-        tags: ['tech', 'tip', 'code'],
-    },
-]
-
-function Posts() {
+function Posts({ postData, bgColor, search }) {
+    const [fillteredData, setFillteredData] = useState(postData)
+    const [keyWord, setKeyWord] = useState('')
+    const handelFiltter = (e) => {
+        e.preventDefault()
+        setKeyWord(e.target.value)
+        setFillteredData(
+            postData.filter((post) => {
+                return (
+                    post.summary.toLowerCase().includes(keyWord) ||
+                    post.title.toLowerCase().includes(keyWord)
+                )
+            })
+        )
+        setKeyWord(e.target.value)
+    }
     return (
         <>
-            <div id='Posts' className='bg-info d-flex d-f'>
-                <Container className='d-flex d-f flex-wrap p-3 h-100'>
-                    {postData.map((post, i) => {
-                        return <Post key={post.id} postData={post} />
-                    })}
-                </Container>
+            {search && (
+                <Form className='bg-dark'>
+                    <Form.Group className='d-flex' controlId='formSearch'>
+                        <Form.Label>
+                            <FcSearch style={{ fontSize: '2rem' }} />
+                        </Form.Label>
+                        <Form.Control
+                            type='search'
+                            name='search'
+                            onChange={handelFiltter}
+                            tabIndex='0'
+                            className='ms-2'
+                        />
+                    </Form.Group>
+                </Form>
+            )}
+            <div id='Posts' className={`bg-${bgColor || 'main'} d-flex d-f`}>
+                <motion.div
+                    layout
+                    className='d-flex d-f flex-wrap p-3 h-100 container'
+                >
+                    <AnimatePresence>
+                        {fillteredData.length > 0 ? (
+                            fillteredData.map((post, i) => {
+                                return <Post key={post.id} postData={post} />
+                            })
+                        ) : (
+                            <p className='display-3 text-center'>
+                                No Posts Match The Search
+                                <br />
+                                {'{ ' + keyWord + ' }'}
+                            </p>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
             </div>
         </>
     )

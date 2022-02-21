@@ -7,8 +7,8 @@ const Modal = ({ modalContent, closeModal }) => {
         }, 1500)
     })
     return (
-        <div className='Modal py-1 px-2 text-dark'>
-            <p className='pt-2'>{modalContent}</p>
+        <div className='Modal rounded pt-1 px-2 text-dark'>
+            <p className='pt-2 fw-bold lead'>{modalContent}</p>
         </div>
     )
 }

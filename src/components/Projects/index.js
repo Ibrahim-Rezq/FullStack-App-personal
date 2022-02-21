@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import Project from './Project'
-import img from '../../Image/BGG.png'
+import img from '../../image/BGG.png'
 
 let proj = [
     {
@@ -45,7 +45,7 @@ const Projects = () => {
     }, [])
 
     return (
-        <div id='Projects' className='d-flex  d-f'>
+        <div id='Projects' className='d-flex bg-sub d-f'>
             <Container>
                 <div className='d-flex flex-column p-3 d-f'>
                     {projData.map((proj, i) => {

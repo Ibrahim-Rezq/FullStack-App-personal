@@ -1,15 +1,11 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
-import { reducer } from '../util/reducer'
-import Modal from './Modal'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeModal, noValue } from '../../redux/actions/actionCreator'
+import Modal from '../../util/Modal'
 import validator from 'email-validator'
 import passwordValidator from 'password-validator'
 
-const defaultState = {
-    people: [],
-    isModalOpen: false,
-    modalContent: '',
-}
 let schema = new passwordValidator()
 
 schema
@@ -26,7 +22,8 @@ schema
     .spaces()
 
 const RegisterForm = () => {
-    const [state, dispatch] = useReducer(reducer, defaultState)
+    const state = useSelector((state) => state.sign)
+    const dispatch = useDispatch()
 
     const closeModal = () => {
         dispatch({ type: 'CLOSE_MODAL' })
