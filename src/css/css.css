@@ -1,178 +1,185 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 :root {
-    --clr-black: #222;
-    --clr-bg-main: #051525;
-    --clr-bg-sub: #041c33;
-    --clr-main: #008080;
-    --clr-sub: #52b5b5;
-    --transition: all 0.3s linear;
-    --spacing: 0.075rem;
-    --radius: 0.25rem;
-    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    --max-width: 1170px;
-    --fixed-width: 450px;
-    box-sizing: border-box;
+  --clr-black: #222;
+  --clr-bg-main: #051525;
+  --clr-bg-sub: #041c33;
+  --clr-main: #008080;
+  --clr-sub: #52b5b5;
+  --transition: all 0.3s linear;
+  --spacing: 0.075rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  --max-width: 1170px;
+  --fixed-width: 450px;
+  box-sizing: border-box;
 }
 body,
 html,
 #root,
 .App {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 .d-f {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+.d-f-b {
+  justify-content: space-between;
+  align-items: center;
 }
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 p {
-    margin: 0;
+  margin: 0;
 }
 .Post a {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 #NavBar {
-    min-height: 69px;
-    top: 0;
+  min-height: 69px;
+  top: 0;
 }
 #Contact,
 #Posts,
 .Hero,
 #Projects {
-    min-height: calc(100vh - 69px);
+  min-height: calc(100vh - 69px);
 }
 #sign {
-    min-height: calc(100vh - 131px);
+  min-height: calc(100vh - 131px);
 }
 #Projects {
-    overflow: hidden;
+  overflow: hidden;
 }
 .Project {
-    z-index: 1;
+  z-index: 1;
 }
 .Project-Image {
-    transform: translate(-10%);
-    z-index: -1;
-    position: relative;
+  transform: translate(-10%);
+  z-index: -1;
+  position: relative;
 }
 .Project:nth-of-type(2n) .Project-Image {
-    transform: translate(10%);
+  transform: translate(10%);
 }
 .Project-Image .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(var(--bs-danger-rgb), 0.6);
-    transition: 0.3s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--bs-danger-rgb), 0.6);
+  transition: 0.3s;
 }
 .Project-Image .overlay:hover {
-    opacity: 0;
+  opacity: 0;
 }
 .Project-Data {
-    z-index: 3;
+  z-index: 3;
 }
 @media (max-width: 768px) {
-    .Project-Image {
-        transform: translate(-10%, -50%);
-    }
-    .Project:nth-of-type(2n) .Project-Image {
-        transform: translate(10%, -50%);
-    }
-    .Project-Image .overlay:hover {
-        opacity: 1;
-    }
+  .Project-Image {
+    transform: translate(-10%, -50%);
+  }
+  .Project:nth-of-type(2n) .Project-Image {
+    transform: translate(10%, -50%);
+  }
+  .Project-Image .overlay:hover {
+    opacity: 1;
+  }
 }
 @media (max-width: 576px) {
-    .Project {
-        z-index: 1;
-        flex-direction: row-reverse;
-    }
-    .Project-Image {
-        transform: translate(0%, 0%);
-    }
-    .Project:nth-of-type(2n) .Project-Image {
-        transform: translate(0%);
-    }
+  .Project {
+    z-index: 1;
+    flex-direction: row-reverse;
+  }
+  .Project-Image {
+    transform: translate(0%, 0%);
+  }
+  .Project:nth-of-type(2n) .Project-Image {
+    transform: translate(0%);
+  }
 }
 .Hero {
-    background: url(../image/BGG.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  background: url(../image/BGG.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .Hero-Text h1 {
-    font-family: 'Courgette', cursive;
+  font-family: 'Courgette', cursive;
 }
 #Contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Hero-Text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .Modal {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--clr-sub);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--clr-sub);
+  box-shadow: 0px 5px 5px inset rgba(107, 107, 107, 0.5);
 }
 .Post {
-    background-color: rgba(var(--bs-danger-rgb), 0.9);
+  background-color: rgba(var(--bs-danger-rgb), 0.9);
 }
 .Post-Head-Sub {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 .Post-Head p span {
-    background-color: rgba(var(--bs-dark-rgb), 0.6);
-    width: fit-content;
+  background-color: rgba(var(--bs-dark-rgb), 0.6);
+  width: fit-content;
 }
 .Post-Body p {
-    color: rgba(var(--bs-dark-rgb), 0.8);
+  color: rgba(var(--bs-dark-rgb), 0.8);
 }
 .Post-Body p a {
-    color: rgba(var(--bs-info-rgb), 0.8) !important;
+  color: rgba(var(--bs-info-rgb), 0.8) !important;
+}
+#Contact-Form,
+.RegisterForm,
+.LoginForm {
+  position: relative;
+  max-width: 768px;
 }
 #Contact-Form {
-    position: relative;
-    max-width: 768px;
-}
-#Contact-Form {
-    background-color: var(--bs-gray-700);
+  background-color: var(--bs-gray-700);
 }
 .contact-name {
-    width: 50%;
+  width: 50%;
 }
 @media (max-width: 768px) {
-    .contact-name {
-        width: 100%;
-    }
+  .contact-name {
+    width: 100%;
+  }
 }
 .bg-main {
-    background-color: var(--clr-bg-main);
+  background-color: var(--clr-bg-main);
 }
 .bg-sub {
-    background-color: var(--clr-bg-sub);
+  background-color: var(--clr-bg-sub);
 }
 .clr-main {
-    background-color: var(--clr-main);
+  background-color: var(--clr-main);
 }
 .clr-sub {
-    background-color: var(--clr-sub);
+  background-color: var(--clr-sub);
 }
 button {
-    transition: 0.3s all;
+  transition: 0.3s all;
 }
 button:hover {
-    box-shadow: 0px 0px 50px inset #000;
+  box-shadow: 0px 0px 50px inset #000;
 }

@@ -1,24 +1,26 @@
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min'
-import { SIGN_IN, SIGN_UP } from '../actions/const'
+import { SIGN_IN, SIGN_OUT } from '../actions/const';
 
 export const signReducer = (
-    state = {
-        isSigndIn: false,
-        name: 'guest',
-        isSigningIn: false,
-        isSigningUp: false,
-    },
-    action
+  state = {
+    isSigndIn: false,
+    name: 'guest',
+    isAdmin: false,
+  },
+  action
 ) => {
-    console.log(action)
-    switch (action.type) {
-        case SIGN_IN:
-            return { ...state, isSigningIn: true, isSigningUp: false }
-        case SIGN_UP:
-            return { ...state, isSigningIn: false, isSigningUp: true }
-            break
-        default:
-            return state
-    }
-}
-export default signReducer
+  console.log(action);
+  switch (action.type) {
+    case SIGN_IN:
+      return {
+        ...state,
+        isSigndIn: true,
+        name: action.payload.name,
+        isAdmin: action.payload.isAdmin,
+      };
+    case SIGN_OUT:
+      return { ...state, isSigndIn: false, name: 'guest', isAdmin: false };
+    default:
+      return state;
+  }
+};
+export default signReducer;
