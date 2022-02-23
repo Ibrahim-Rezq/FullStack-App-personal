@@ -7,33 +7,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 function Posts({ postData, bgColor, search }) {
   const [fillteredData, setFillteredData] = useState(postData);
   const [searchKeyWord, setSearchKeyWord] = useState(' ');
-  const [tag, setTag] = useState('All');
+  const [categorie, setCategorie] = useState('All');
   useEffect(() => {
     setFillteredData(
       postData.filter((post) => {
         return (
           (post.summary.toLowerCase().includes(searchKeyWord) ||
             post.title.toLowerCase().includes(searchKeyWord)) &&
-          (tag === 'All' ? true : post.tags.includes(tag))
+          (categorie === 'All' ? true : post.categories.includes(categorie))
         );
       })
     );
-  }, [searchKeyWord, tag]);
+  }, [searchKeyWord, categorie]);
 
   const handelFiltterBySearch = (e) => {
     e.preventDefault();
     setSearchKeyWord(e.target.value);
   };
-  const handelFiltterByTag = (e) => {
+  const handelFiltterByCategorie = (e) => {
     e.preventDefault();
-    setTag(e.target.value);
+    setCategorie(e.target.value);
   };
   return (
     <>
       {search && (
         <FilterForm
           handelFiltterBySearch={handelFiltterBySearch}
-          handelFiltterByTag={handelFiltterByTag}
+          handelFiltterByCategorie={handelFiltterByCategorie}
         />
       )}
       <div id='Posts' className={`bg-${bgColor || 'main'} d-flex d-f`}>
@@ -49,7 +49,7 @@ function Posts({ postData, bgColor, search }) {
                 <br />
                 {'{ ' + searchKeyWord + ' }'}
                 <br />
-                {tag === 'All' || 'or tag { ' + tag + ' }'}
+                {categorie === 'All' || 'or categorie { ' + categorie + ' }'}
               </p>
             )}
           </AnimatePresence>
@@ -59,7 +59,10 @@ function Posts({ postData, bgColor, search }) {
   );
 }
 
-export const FilterForm = ({ handelFiltterBySearch, handelFiltterByTag }) => {
+export const FilterForm = ({
+  handelFiltterBySearch,
+  handelFiltterByCategorie,
+}) => {
   return (
     <>
       <Form className='bg-dark'>
@@ -82,7 +85,7 @@ export const FilterForm = ({ handelFiltterBySearch, handelFiltterByTag }) => {
                 Search By categorie:{' '}
               </Form.Label>
               <Form.Select
-                onChange={handelFiltterByTag}
+                onChange={handelFiltterByCategorie}
                 tabIndex='0'
                 className='ms-2'
                 aria-label='Default select example'>

@@ -1,21 +1,20 @@
-import React from 'react'
-import Hero from './Hero'
-import Contact from '../Contact/'
-import Projects from '../Projects'
-import Posts from '../Blog/Posts'
-import postData from '../../util/data'
+import React from 'react';
+import Hero from './Hero';
+import Contact from '../Contact/';
+import Projects from '../Projects';
+import Posts from '../Blog/Posts';
+import { postData } from '../../util/data';
+import * as ReactRouter from 'react-router-dom';
 
 const Home = () => {
-    return (
-        <>
-            {/* <LoginForm></LoginForm> */}
-            {/* <RegisterForm></RegisterForm> */}
-            <Hero />
-            <Projects />
-            <Posts postData={postData} />
-            <Contact />
-        </>
-    )
-}
+  return (
+    <>
+      <Hero />
+      <Projects />
+      <Posts postData={postData} />
+      <Contact />
+    </>
+  );
+};
 
-export default Home
+export default Home;

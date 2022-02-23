@@ -1,5 +1,5 @@
 import {
-  ADD_ITEM,
+  ADD_COMMENT,
   CLOSE_MODAL,
   REMOVE_ITEM,
   NO_VALUE,
@@ -8,12 +8,19 @@ import {
   DELET_POST,
   SIGN_IN,
   SIGN_UP,
+  DELETE_COMMENT,
 } from './const';
 
-export const addItem = (item) => {
+export const addComment = (comment) => {
   return {
-    type: ADD_ITEM,
-    payload: item,
+    type: ADD_COMMENT,
+    payload: comment,
+  };
+};
+export const deleteComment = (id) => {
+  return {
+    type: DELETE_COMMENT,
+    payload: id,
   };
 };
 export const closeModal = () => {

@@ -1,4 +1,5 @@
-export const ADD_ITEM = 'ADD_ITEM';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const NO_VALUE = 'NO_VALUE';

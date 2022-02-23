@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Navbar, NavLink, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { BsPersonCircle } from 'react-icons/bs';
 
 const Navigation = () => {
-  const sign = useSelector((state) => state.sign);
-  const [path, setPath] = useState(window.location.pathname);
+  const signState = useSelector((state) => state.sign);
+  const location = useLocation();
+  const [path, setPath] = useState(location.pathname);
+
+  useEffect(() => {
+    setPath(location.pathname);
+    ScrollToTop();
+  }, [location]);
+
   const Scroll = (e) => {
     e.preventDefault();
     const navBar = document.querySelector('#NavBar');
@@ -18,18 +25,12 @@ const Navigation = () => {
       top: top - navBarHeight,
       behavior: 'smooth',
     });
-    setTimeout(() => {
-      setPath(window.location.pathname);
-    }, 0);
   };
   const ScrollToTop = () => {
     window.scroll({
       top: 0,
       behavior: 'smooth',
     });
-    setTimeout(() => {
-      setPath(window.location.pathname);
-    }, 0);
   };
   return (
     <Navbar id='NavBar' bg='dark' variant='dark' sticky='top' expand='md'>
@@ -39,16 +40,8 @@ const Navigation = () => {
         </Link>
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='m-auto'>
-            <RouteLink
-              name={'home'}
-              isDropDown={false}
-              ScrollToTop={ScrollToTop}
-            />
-            <RouteLink
-              name={'blog'}
-              isDropDown={false}
-              ScrollToTop={ScrollToTop}
-            />
+            <RouteLink name={'home'} isDropDown={false} />
+            <RouteLink name={'blog'} isDropDown={false} />
             {path !== '/' || (
               <>
                 <PageLink name={'Projects'} Scroll={Scroll} />
@@ -59,8 +52,8 @@ const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
         <div className='account d-flex d-f'>
-          {(sign.isSigndIn && (
-            <Navbar.Text>Signed in as: {sign.name}</Navbar.Text>
+          {(signState.isSigndIn && (
+            <Navbar.Text>Signed in as: {signState.name}</Navbar.Text>
           )) || (
             <>
               <NavDropdown
@@ -100,7 +93,7 @@ export const PageLink = ({ name, Scroll }) => {
     </>
   );
 };
-export const RouteLink = ({ name, ScrollToTop, isDropDown }) => {
+export const RouteLink = ({ name, isDropDown }) => {
   return (
     <>
       <Link
@@ -109,8 +102,7 @@ export const RouteLink = ({ name, ScrollToTop, isDropDown }) => {
           'nav-link text-capitalize' + (isDropDown ? ' dropdown-item' : '')
         }
         tabIndex='0'
-        to={'/' + (name == 'home' ? '' : name)}
-        onClick={ScrollToTop}>
+        to={'/' + (name == 'home' ? '' : name)}>
         {name}
       </Link>
     </>

@@ -2,13 +2,12 @@ import { SIGN_IN, SIGN_OUT } from '../actions/const';
 
 export const signReducer = (
   state = {
-    isSigndIn: false,
+    isSigndIn: true,
     name: 'guest',
     isAdmin: false,
   },
   action
 ) => {
-  console.log(action);
   switch (action.type) {
     case SIGN_IN:
       return {
