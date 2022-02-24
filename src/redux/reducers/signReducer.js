@@ -1,22 +1,31 @@
-import { SIGN_IN, SIGN_OUT } from '../actions/const'
+import { SIGN_IN, SIGN_OUT, SIGN_UP } from '../actions/const';
+import { setMockUsers } from '../actions/actionCreator';
 
 const defaultState = {
-    isSigndIn: false,
-    username: 'guest',
-}
+  isSigndIn: false,
+  userName: 'guest',
+  mockusers: [],
+};
 export const signReducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case SIGN_IN:
-            console.log(action.payload.username)
-            return {
-                ...state,
-                isSigndIn: true,
-                username: action.payload.username,
-            }
-        case SIGN_OUT:
-            return defaultState
-        default:
-            return state
-    }
-}
-export default signReducer
+  switch (action.type) {
+    case SIGN_IN:
+      return {
+        ...state,
+        isSigndIn: true,
+        userName: action.payload.userName,
+      };
+    case SIGN_UP:
+      const tempMockUsers = [...state.mockusers, action.payload];
+      setMockUsers(tempMockUsers);
+      return {
+        ...state,
+        mockusers: tempMockUsers,
+      };
+
+    case SIGN_OUT:
+      return defaultState;
+    default:
+      return state;
+  }
+};
+export default signReducer;

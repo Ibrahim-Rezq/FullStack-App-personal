@@ -1,70 +1,90 @@
 import {
-    ADD_COMMENT,
-    CLOSE_MODAL,
-    REMOVE_ITEM,
-    NO_VALUE,
-    SIGN_IN,
-    SIGN_UP,
-    SIGN_OUT,
-    DELETE_COMMENT,
-    NON_VAILED_PASSWORD,
-} from './const'
-import { users } from '../../util/data'
+  ADD_COMMENT,
+  DELETE_COMMENT,
+  CLOSE_MODAL,
+  NO_VALUE,
+  LIKE_POST,
+  SIGN_IN,
+  SIGN_OUT,
+  SIGN_UP,
+  NON_VAILED_PASSWORD,
+  NON_VAILED_EMAIL,
+  HAS_ACCOUNT,
+} from './const';
+import { users } from '../../util/data';
+
+let mockUsers = [];
+
+const getAllUsers = () => {
+  const allUsers = users;
+  allUsers.push(...mockUsers);
+  return allUsers;
+};
+export const setMockUsers = (MockUsers = []) => {
+  mockUsers = MockUsers;
+};
 
 export const addComment = (comment) => {
-    return {
-        type: ADD_COMMENT,
-        payload: comment,
-    }
-}
+  return {
+    type: ADD_COMMENT,
+    payload: comment,
+  };
+};
 export const deleteComment = (id) => {
-    return {
-        type: DELETE_COMMENT,
-        payload: id,
-    }
-}
+  return {
+    type: DELETE_COMMENT,
+    payload: id,
+  };
+};
 export const closeModal = () => {
+  return {
+    type: CLOSE_MODAL,
+  };
+};
+export const noValue = () => {
+  return {
+    type: NO_VALUE,
+  };
+};
+export const signOut = () => {
+  return {
+    type: SIGN_OUT,
+  };
+};
+export const signUp = (userToSignUp) => {
+  const getUser = getAllUsers().filter((user) => {
+    return user.email === userToSignUp.email;
+  });
+  if (getUser.length > 0) {
     return {
-        type: CLOSE_MODAL,
-    }
-}
-export const removeItem = (item) => {
+      type: HAS_ACCOUNT,
+    };
+  } else {
     return {
-        type: REMOVE_ITEM,
-        payload: item,
-    }
-}
-export const noValue = (item) => {
-    return {
-        type: NO_VALUE,
-    }
-}
-export const signOut = (item) => {
-    return {
-        type: SIGN_OUT,
-    }
-}
-export const signUp = (user) => {
-    return {
-        type: SIGN_UP,
-        payload: user,
-    }
-}
+      type: SIGN_UP,
+      payload: userToSignUp,
+    };
+  }
+};
 export const signIn = (userToLogIn) => {
-    const getUser = users.filter((user) => {
-        return (
-            user.email === userToLogIn.email &&
-            user.password === userToLogIn.password
-        )
-    })
-    if (getUser.length > 0) {
-        return {
-            type: SIGN_IN,
-            payload: getUser[0],
-        }
-    } else {
-        return {
-            type: NON_VAILED_PASSWORD,
-        }
-    }
-}
+  const getUser = getAllUsers().filter((user) => {
+    return (
+      user.email === userToLogIn.email && user.password === userToLogIn.password
+    );
+  });
+  if (getUser.length > 0) {
+    return {
+      type: SIGN_IN,
+      payload: getUser[0],
+    };
+  } else {
+    return {
+      type: NON_VAILED_PASSWORD,
+    };
+  }
+};
+export const nonVailedEmail = () => {
+  return {
+    type: NON_VAILED_EMAIL,
+  };
+};

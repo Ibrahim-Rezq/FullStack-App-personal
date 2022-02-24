@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal, noValue } from '../../redux/actions/actionCreator';
+import { closeModal, noValue, signUp } from '../../redux/actions/actionCreator';
 import Modal from '../../util/Modal';
 import validator from 'email-validator';
 import passwordValidator from 'password-validator';
@@ -25,10 +25,9 @@ const Register = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const [person, setPerson] = useState({
-    firstName: '',
+    userName: '',
     email: '',
     password: '',
-    passwordCheck: '',
   });
 
   const handleChange = (e) => {
@@ -39,39 +38,34 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      person.firstName &&
-      person.email &&
-      person.password &&
-      person.passwordCheck
-    ) {
+    if (person.userName && person.email && person.password) {
       if (validator.validate(person.email)) {
-        if (person.password === person.passwordCheck) {
-          if (schema.validate(person.password)) {
-            const newPerson = { ...person };
-            setPerson({
-              firstName: '',
-              email: '',
-              password: '',
-              passwordCheck: '',
-            });
-            dispatch({ type: 'ADD_ITEM', payload: newPerson });
-          } else {
-            dispatch({
-              type: 'NON_VAILED_PASS',
-              payload: schema.validate(person.password, {
-                list: true,
-              }),
-            });
-          }
+        if (schema.validate(person.password)) {
+          const d = new Date();
+          const newPerson = {
+            ...person,
+            id: d.getTime().toString(),
+            created: '10-3-2020',
+          };
+          setPerson({
+            userName: '',
+            email: '',
+            password: '',
+          });
+          dispatch(signUp(newPerson));
         } else {
           dispatch({
             type: 'NON_VAILED_PASS',
-            payload: 'password dosent match',
+            payload: schema.validate(person.password, {
+              list: true,
+            }),
           });
         }
       } else {
-        dispatch({ type: 'NON_VAILED' });
+        dispatch({
+          type: 'NON_VAILED_PASS',
+          payload: 'password dosent match',
+        });
       }
     } else {
       dispatch(noValue());
@@ -96,8 +90,8 @@ const Register = () => {
               <Form.Label>Name :</Form.Label>
               <Form.Control
                 type='text'
-                name='firstName'
-                value={person.firstName}
+                name='userName'
+                value={person.userName}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -125,15 +119,6 @@ const Register = () => {
               <Form.Text className='text-muted'>
                 Password can contain only lowercasse and numbers
               </Form.Text>
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='formPasswordCheck'>
-              <Form.Label>ReEnter Password :</Form.Label>
-              <Form.Control
-                type='password'
-                name='passwordCheck'
-                value={person.passwordCheck}
-                onChange={handleChange}
-              />
             </Form.Group>
             <Button onClick={handleSubmit} variant='primary' type='submit'>
               Send Email

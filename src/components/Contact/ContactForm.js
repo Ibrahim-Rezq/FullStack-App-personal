@@ -1,9 +1,13 @@
-import React, { useState, useReducer } from 'react';
+import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import Modal from '../../util/Modal';
 import validator from 'email-validator';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal, noValue } from '../../redux/actions/actionCreator';
+import {
+  closeModal,
+  nonVailedEmail,
+  noValue,
+} from '../../redux/actions/actionCreator';
 
 const ContactForm = () => {
   const modal = useSelector((state) => state.modal);
@@ -32,9 +36,9 @@ const ContactForm = () => {
           email: '',
           message: '',
         });
-        dispatch({ type: 'ADD_ITEM' });
+        console.log(newPerson);
       } else {
-        dispatch({ type: 'NON_VAILED' });
+        dispatch(nonVailedEmail());
       }
     } else {
       dispatch(noValue());
