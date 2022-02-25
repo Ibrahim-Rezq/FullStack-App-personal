@@ -26,6 +26,7 @@ const App = () => {
                     </Route>
                     <Route path='/blog/:postId' element={<PostPage />} />
                     <Route path='/contact' element={<Contact />} />
+                    <Route path='/about' element={<About />} />
                     <Route path='*' element={<Error />} />
                 </Routes>
                 <Footer />

@@ -1,17 +1,14 @@
 import React from 'react'
-import { Container, Button } from 'react-bootstrap'
 import { motion } from 'framer-motion'
 
 function Hero() {
     return (
         <>
-            <div className='Hero p-5 w-100 '>
-                <Container>
+            <section id='Hero'>
+                <div className='container'>
                     <motion.div
                         initial={{
                             scale: 0,
-                            x: '-50%',
-                            y: '-50%',
                             rotateZ: 360,
                         }}
                         animate={{ scale: 1, rotateZ: 0 }}
@@ -21,26 +18,23 @@ function Hero() {
                             type: 'spring',
                             stiffness: 100,
                         }}
-                        className='Hero-Text text-center navbar-brand'
+                        className='Hero-Text '
                     >
-                        <h1 className='display-2 mb-5'>
-                            Hi I'm <br />{' '}
-                            <span className='text-danger'>Ibrahim Amin</span>
+                        <h1 className=''>
+                            Hi I'm <br /> <span className=''>Ibrahim Amin</span>
                         </h1>
-                        <p className='lead text-wrap mt-5'>
+                        <p className=''>
                             I'm a{' '}
-                            <span className='text-warning'>
-                                Passionate Web Developer
-                            </span>{' '}
+                            <span className=''>Passionate Web Developer</span>{' '}
                             who uses the sorcery of code to create Amazing
                             Websites, Always eager to learn new skills and
                             master already acquired ones, love To write stories,
                             make/play games in my spare time
                         </p>
-                        <Button variant='info'>Contact Me</Button>
+                        <button className='btn'>Contact Me</button>
                     </motion.div>
-                </Container>
-            </div>
+                </div>
+            </section>
         </>
     )
 }
