@@ -1,29 +1,29 @@
-import { Button, Container } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 const Comment = ({ comment, handleDelete }) => {
-  const { id, commentContent, commenterId } = comment;
-  const sign = useSelector((state) => state.sign);
+    const { id, commentContent, commenterId } = comment
+    const sign = useSelector((state) => state.sign)
 
-  return (
-    <Container className='pb-3'>
-      <h4 className='lead'>{commenterId}</h4>
-      <div className='d-f-b d-flex'>
-        <p className='text-danger'>{commentContent}</p>
-        {sign.isSigndIn && sign.userName == commenterId && (
-          <div>
-            <Button
-              variant='link'
-              onClick={() => {
-                handleDelete(id);
-              }}>
-              delete
-            </Button>
-          </div>
-        )}
-      </div>
-    </Container>
-  );
-};
+    return (
+        <section className='comment'>
+            <h4>{commenterId}</h4>
+            <div>
+                <p>{commentContent}</p>
+                {sign.isSigndIn && sign.userName == commenterId && (
+                    <div>
+                        <button
+                            className='btn'
+                            onClick={() => {
+                                handleDelete(id)
+                            }}
+                        >
+                            delete
+                        </button>
+                    </div>
+                )}
+            </div>
+        </section>
+    )
+}
 
-export default Comment;
+export default Comment

@@ -10,7 +10,7 @@ function Project({ num, ProjectData }) {
     const isVisible = useOnScreen(ref)
     return (
         <>
-            <motion.div
+            <motion.article
                 ref={ref}
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
@@ -20,12 +20,9 @@ function Project({ num, ProjectData }) {
                     type: 'spring',
                     stiffness: 100,
                 }}
-                className={`Project d-flex d-f my-md-3 my-1
-                flex-md${num % 2 === 0 ? '-row-reverse' : '-row'} 
-                flex-sm-column 
-                flex-column-reverse`}
+                className={`Project`}
             >
-                <motion.div
+                <motion.section
                     initial={{ x: num % 2 === 0 ? '100vw' : '-100vw' }}
                     animate={{
                         x: isVisible ? 0 : num % 2 === 0 ? '100vw' : '-100vw',
@@ -36,30 +33,24 @@ function Project({ num, ProjectData }) {
                         type: 'spring',
                         stiffness: 100,
                     }}
-                    className='Project-Data px-3 py-1 rounded clr-main'
+                    className='Project-Data '
                 >
-                    <p className='lead mb-0 fw-normal text-light'>Featured</p>
-                    <h4 className='display-5 ms-2 text-capitalize fw-bold'>
-                        {name}
-                    </h4>
-                    <p className='fw-bold'>{desc}</p>
-                    <ul>
+                    <p className='featured'>Featured</p>
+                    <h4>{name}</h4>
+                    <p>{desc}</p>
+                    <ul className='tech'>
                         {tech.map((elem, i) => {
-                            return (
-                                <li key={i} className=' badge clr-sub ms-3'>
-                                    {elem}
-                                </li>
-                            )
+                            return <li key={i}>{elem}</li>
                         })}
                     </ul>
-                </motion.div>
-                <div className='Project-Image min-vw-25 w-100'>
+                </motion.section>
+                <section className='Project-Image'>
                     <div className='overlay' />
                     <a href=''>
                         <Image src={image} alt='' fluid />
                     </a>
-                </div>
-            </motion.div>
+                </section>
+            </motion.article>
         </>
     )
 }
