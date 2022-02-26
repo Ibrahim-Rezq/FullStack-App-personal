@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeModal, noValue, signUp } from '../../redux/actions/actionCreator';
 import Modal from '../../util/Modal';
@@ -74,57 +73,61 @@ const Register = () => {
 
   return (
     <>
-      <div id='sign' className='d-f d-flex'>
-        <Container className=' RegisterForm p-5'>
-          {modal.isModalOpen && (
-            <Modal
-              modalContent={modal.modalContent}
-              closeModal={() => {
-                dispatch(closeModal());
-              }}
+      <div className=' RegisterForm container'>
+        {modal.isModalOpen && (
+          <Modal
+            modalContent={modal.modalContent}
+            closeModal={() => {
+              dispatch(closeModal());
+            }}
+          />
+        )}
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}>
+          <div className='Form-Group' controlId='formUsername'>
+            <label>Name :</label>
+            <input
+              className='Form-Control'
+              type='text'
+              name='userName'
+              value={person.userName}
+              onChange={handleChange}
             />
-          )}
+          </div>
 
-          <Form>
-            <Form.Group className='mb-3' controlId='formUsername'>
-              <Form.Label>Name :</Form.Label>
-              <Form.Control
-                type='text'
-                name='userName'
-                value={person.userName}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group className='mb-3' controlId='formEmail'>
-              <Form.Label>Email : </Form.Label>
-              <Form.Control
-                type='email'
-                name='email'
-                value={person.email}
-                onChange={handleChange}
-              />
-              <Form.Text className='text-muted'>
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='formPassword'>
-              <Form.Label>Password :</Form.Label>
-              <Form.Control
-                type='password'
-                name='password'
-                value={person.password}
-                onChange={handleChange}
-              />
-              <Form.Text className='text-muted'>
-                Password can contain only lowercasse and numbers
-              </Form.Text>
-            </Form.Group>
-            <Button onClick={handleSubmit} variant='primary' type='submit'>
-              Send Email
-            </Button>
-          </Form>
-        </Container>
+          <div className='Form-Group' controlId='formEmail'>
+            <label>Email : </label>
+            <input
+              className='Form-Control'
+              type='email'
+              name='email'
+              value={person.email}
+              onChange={handleChange}
+            />
+            <p className='Form-Text'>
+              We'll never share your email with anyone else.
+            </p>
+          </div>
+          <div className='Form-Group' controlId='formPassword'>
+            <label>Password :</label>
+            <input
+              className='Form-Control'
+              type='password'
+              name='password'
+              value={person.password}
+              onChange={handleChange}
+            />
+            <p className='Form-Text'>
+              Password can contain only lowercasse and numbers
+            </p>
+          </div>
+          <button onClick={handleSubmit} className='btn' type='submit'>
+            Send Email
+          </button>
+        </form>
       </div>
     </>
   );

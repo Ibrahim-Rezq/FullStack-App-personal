@@ -4,7 +4,6 @@ import Contact from '../Contact/';
 import Projects from '../Projects';
 import Posts from '../Blog/Posts';
 import { postData } from '../../util/data';
-import * as ReactRouter from 'react-router-dom';
 
 const Home = () => {
   return (

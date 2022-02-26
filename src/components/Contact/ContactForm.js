@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
 import Modal from '../../util/Modal';
 import validator from 'email-validator';
 import { useSelector, useDispatch } from 'react-redux';
@@ -47,7 +46,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <Container id='Contact-Form' className='rounded'>
+      <section id='Contact-Form' className='container'>
         {modal.isModalOpen && (
           <Modal
             modalContent={modal.modalContent}
@@ -56,59 +55,60 @@ const ContactForm = () => {
             }}
           />
         )}
-        <Form className=' p-4 w-100 rounded w-75'>
-          <div className='mb-3 d-md-flex justify-content-between'>
-            <Form.Group
-              className='contact-name mb-3 me-3 d-md-flex flex-column'
-              controlId='forFirstname'>
-              <Form.Label className='mx-2 mt-1'>FirstName: </Form.Label>
-              <Form.Control
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}>
+          <div className='Form-Group'>
+            <div className='Form-Group' controlId='forFirstname'>
+              <label className='mx-2 mt-1'>FirstName: </label>
+              <input
+                className='Form-Control'
                 type='text'
                 name='firstName'
                 value={person.firstName}
                 onChange={handleChange}
               />
-            </Form.Group>
-            <Form.Group
-              className='contact-name mb-3 ms-md-3 d-md-flex flex-column'
-              controlId='forLastname'>
-              <Form.Label className='mx-2 mt-1'>Lastname: </Form.Label>
-              <Form.Control
+            </div>
+            <div className='Form-Group' controlId='forLastname'>
+              <label className='mx-2 mt-1'>Lastname: </label>
+              <input
+                className='Form-Control'
                 type='text'
                 name='lastName'
                 value={person.lastName}
                 onChange={handleChange}
               />
-            </Form.Group>
+            </div>
           </div>
 
-          <Form.Group className='mb-3' controlId='formEmail'>
-            <Form.Label>Email : </Form.Label>
-            <Form.Control
+          <div className='Form-Group' controlId='formEmail'>
+            <label>Email : </label>
+            <input
+              className='Form-Control'
               type='email'
               name='email'
               value={person.email}
               onChange={handleChange}
             />
-            <Form.Text className='text-muted'>
+            <p className='Form-Text'>
               We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Form.Group className='mb-3' controlId='formText'>
-            <Form.Label>Message :</Form.Label>
-            <Form.Control
-              as='textarea'
-              style={{ height: '200px' }}
+            </p>
+          </div>
+          <div className='Form-Group' controlId='formText'>
+            <label>Message :</label>
+            <textarea
+              className='Form-Control'
               name='message'
               value={person.message}
               onChange={handleChange}
             />
-          </Form.Group>
-          <Button onClick={handleSubmit} variant='primary' type='submit'>
+          </div>
+          <button onClick={handleSubmit} className='btn' type='submit'>
             Send Email
-          </Button>
-        </Form>
-      </Container>
+          </button>
+        </form>
+      </section>
     </>
   );
 };

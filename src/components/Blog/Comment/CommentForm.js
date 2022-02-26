@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Container } from 'react-bootstrap';
 import Modal from '../../../util/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -58,21 +57,23 @@ const CommentForm = ({ postId }) => {
               }}
             />
           )}
-          <Form className=' p-4 w-100 rounded w-75'>
-            <Form.Group className='mb-3' controlId='formText'>
-              <Form.Label>Comment :</Form.Label>
-              <Form.Control
-                as='textarea'
-                style={{ height: '100px' }}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+            <section className='Form-Group' controlId='formText'>
+              <label>Comment :</label>
+              <textarea
+                className='Form-Control'
                 name='message'
                 value={comment.commentContent}
                 onChange={handleChange}
               />
-            </Form.Group>
-            <Button onClick={handleSubmit} variant='primary' type='submit'>
+            </section>
+            <button onClick={handleSubmit} className='btn' type='submit'>
               Comment
-            </Button>
-          </Form>
+            </button>
+          </form>
         </>
       )}
     </>
