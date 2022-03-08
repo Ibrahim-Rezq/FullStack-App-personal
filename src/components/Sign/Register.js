@@ -73,7 +73,7 @@ const Register = () => {
 
   return (
     <>
-      <div className=' RegisterForm container'>
+      <div id='RegisterForm' className='container'>
         {modal.isModalOpen && (
           <Modal
             modalContent={modal.modalContent}

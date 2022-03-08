@@ -11,7 +11,7 @@
   --secondary: #2188ff;
   --secondary-rgb: 33, 136, 255;
   --text-background: #b5b5b5;
-  --text-Surface: #c9c9c9;
+  --text-surface: #c9c9c9;
   --text-Primary: #171717;
   --text-Secondary: #000000;
   --red-dark: #bb2525;
@@ -188,8 +188,8 @@ img {
   cursor: pointer;
 }
 .btn:hover {
-  background-color: var(--background) !important;
-  color: var(--text-background) !important;
+  background-color: var(--background);
+  color: var(--text-background);
   border: 1px solid var(--secondary);
 }
 .btn:active {
@@ -426,7 +426,7 @@ img {
   max-width: 100%;
   height: fit-content;
   background-color: var(--surface);
-  color: var(--text-Surface);
+  color: var(--text-surface);
 }
 form .btn {
   background-color: var(--primary);
@@ -440,7 +440,7 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 0 30px var(--surface) inset !important;
 }
 input:-webkit-autofill {
-  -webkit-text-fill-color: var(--text-Surface) !important;
+  -webkit-text-fill-color: var(--text-surface) !important;
 }
 
 .Form-Group {
@@ -454,7 +454,7 @@ input:-webkit-autofill {
   background-color: inherit;
   color: inherit;
   border: none;
-  border-bottom: 1px solid var(--text-Surface);
+  border-bottom: 1px solid var(--text-surface);
   font-family: inherit;
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
@@ -472,6 +472,18 @@ textarea {
 .Form-Control:focus-within {
   border-bottom: 1px solid var(--primary);
   outline: none;
+}
+/* ////////////////////////////////////Form//////////////////////////////////// */
+/* ////////////////////////////////////Form//////////////////////////////////// */
+#LoginForm,
+#RegisterForm {
+  height: calc(100vh - calc(69px + 88px));
+}
+#LoginForm form,
+#RegisterForm form {
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  background-color: var(--surface);
 }
 /* ////////////////////////////////////Form//////////////////////////////////// */
 .Modal {
@@ -518,6 +530,13 @@ textarea {
 .post .post-body p a {
   color: rgba(var(--secondary-rgb), 0.8);
 }
+#Posts .search-erorr {
+  font-size: 2rem;
+  text-align: center;
+}
+#Posts .search-erorr span {
+  color: var(--primary);
+}
 /* ////////////////////////////////////BlogForm//////////////////////////////////// */
 #Blog .Form-Group.Group-Head {
   justify-content: space-between;
@@ -554,12 +573,12 @@ select {
   font-family: inherit;
   text-transform: capitalize;
   background-color: var(--surface);
-  color: var(--text-Surface);
+  color: var(--text-surface);
 }
 select option {
   text-transform: capitalize;
   background-color: var(--surface);
-  color: var(--text-Surface);
+  color: var(--text-surface);
 }
 @media (min-width: 768px) {
   #Blog .Form-Group.Group-Head {
@@ -569,7 +588,9 @@ select option {
 /* ////////////////////////////////////BlogForm//////////////////////////////////// */
 /* ////////////////////////////////////Blog//////////////////////////////////// */
 /* ////////////////////////////////////CommentForm//////////////////////////////////// */
-
+#CommentForm {
+  margin: 1rem 0rem;
+}
 /* ////////////////////////////////////CommentForm//////////////////////////////////// */
 /* ////////////////////////////////////Comment//////////////////////////////////// */
 .comment {
@@ -586,8 +607,34 @@ select option {
   color: var(--primary);
 }
 .comment p {
-  color: var(--text-Surface);
+  color: var(--text-surface);
   margin-left: 0.75rem;
+}
+.comment div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment .btn,
+.comment .btn:hover {
+  background-color: var(--surface);
+  color: var(--text-surface);
+  border: none;
+  display: inline;
+  box-shadow: none;
+  padding: 0;
+  margin: 0.5rem 0.75rem;
+  border-radius: 0;
+  background-image: linear-gradient(var(--primary), var(--secondary));
+  background-size: 0% 0.1em;
+  background-position-y: 100%;
+  background-position-x: 0%;
+  background-repeat: no-repeat;
+  align-self: flex-end;
+}
+.comment .btn:hover {
+  color: var(--secondary);
+  background-size: 100% 0.1em;
 }
 
 /* ////////////////////////////////////Comment//////////////////////////////////// */

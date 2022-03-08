@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <>
-      <section className='LoginForm container'>
+      <section id='LoginForm' className='container'>
         {modal.isModalOpen && (
           <Modal
             modalContent={modal.modalContent}

@@ -35,7 +35,6 @@ const ContactForm = () => {
           email: '',
           message: '',
         });
-        console.log(newPerson);
       } else {
         dispatch(nonVailedEmail());
       }

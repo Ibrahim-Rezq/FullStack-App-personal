@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Post from './Post';
 import { FcSearch } from 'react-icons/fc';
 import { motion, AnimatePresence } from 'framer-motion';
+import { categories } from '../../util/data';
 
 function Posts({ postData, bgColor, search }) {
   const [fillteredData, setFillteredData] = useState(postData);
@@ -45,12 +46,24 @@ function Posts({ postData, bgColor, search }) {
                 return <Post key={post.id} postData={post} />;
               })
             ) : (
-              <p className='display-3 text-center'>
-                No Posts Match The Search
+              <p className='search-erorr'>
+                No Posts Match The Search{' '}
+                {searchKeyWord === 'All' || (
+                  <>
+                    <span>{`{ `}</span>
+                    {searchKeyWord}
+                    <span>{` }`}</span>{' '}
+                  </>
+                )}
                 <br />
-                {'{ ' + searchKeyWord + ' }'}
-                <br />
-                {categorie === 'All' || 'or categorie { ' + categorie + ' }'}
+                {categorie === 'All' || (
+                  <>
+                    {`or categorie `}
+                    <span>{`{ `}</span>
+                    {categorie}
+                    <span>{` }`}</span>{' '}
+                  </>
+                )}
               </p>
             )}
           </AnimatePresence>
@@ -92,12 +105,13 @@ export const FilterForm = ({
                 tabIndex='0'
                 aria-label='Default select example'>
                 <option>All</option>
-                <option value='tech'>tech</option>
-                <option value='tip'>tip</option>
-                <option value='code'>code</option>
-                <option value='stories'>stories</option>
-                <option value='funnny'>funnny</option>
-                <option value='clacky'>clacky</option>
+                {categories.map((categorie) => {
+                  return (
+                    <option key={categorie} value={categorie}>
+                      {categorie}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>

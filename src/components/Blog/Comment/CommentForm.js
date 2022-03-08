@@ -11,7 +11,6 @@ import {
 const CommentForm = ({ postId }) => {
   const modal = useSelector((state) => state.modal);
   const sign = useSelector((state) => state.sign);
-  console.log(sign);
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     id: '',
@@ -33,7 +32,6 @@ const CommentForm = ({ postId }) => {
     e.preventDefault();
     if (sign.isSigndIn && comment.commentContent) {
       const newComment = { ...comment };
-      console.log(newComment);
       setComment({ postId: '', commenterId: '', commentContent: '' });
       dispatch(addComment(newComment));
     } else {
@@ -42,7 +40,7 @@ const CommentForm = ({ postId }) => {
   };
 
   return (
-    <>
+    <section id='CommentForm'>
       {!sign.isSigndIn ? (
         <p>
           Plese sign in to leave a comment <Link to='/login'>LogIn</Link>
@@ -61,11 +59,11 @@ const CommentForm = ({ postId }) => {
             onSubmit={(e) => {
               e.preventDefault();
             }}>
-            <section className='Form-Group' controlId='formText'>
+            <section className='Form-Group' controlId='formComment'>
               <label>Comment :</label>
               <textarea
                 className='Form-Control'
-                name='message'
+                name='comment'
                 value={comment.commentContent}
                 onChange={handleChange}
               />
@@ -76,7 +74,7 @@ const CommentForm = ({ postId }) => {
           </form>
         </>
       )}
-    </>
+    </section>
   );
 };
 export default CommentForm;
